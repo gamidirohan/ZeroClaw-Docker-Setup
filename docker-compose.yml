@@ -1,0 +1,22 @@
+services:
+  zeroclaw:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: zeroclaw
+    restart: unless-stopped
+    environment:
+      - API_KEY=sk-your_api_key_here  # Recommend replacing with token or device-code auth via CLI
+      - PROVIDER=openai-codex         # Use ChatGPT subscription
+      - ZEROCLAW_DEFAULT_MODEL=gpt-4o
+      - ZEROCLAW_ALLOW_PUBLIC_BIND=true
+      - RUST_LOG=debug
+    volumes:
+      - ./data:/zeroclaw-data        # Persist config and memory
+      - .:/workspace                  # MOUNT YOUR REPO HERE
+    ports:
+      - "42617:42617"
+    deploy:
+      resources:
+        limits:
+          memory: 1G               # Plenty for ZeroClaw, saves room for others

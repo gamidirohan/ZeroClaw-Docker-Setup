@@ -1,0 +1,14 @@
+# ZeroClaw sensitive data
+data/
+*.log
+schema.json
+bot_info.json
+filelist.txt
+extracted/
+
+# Docker
+.dockerignore
+
+# OS files
+.DS_Store
+Thumbs.db
